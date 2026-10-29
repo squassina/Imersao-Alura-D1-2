@@ -1,0 +1,8 @@
+{
+  "name": "Calculadora Python Interativa",
+  "description": "Aprenda a programar em Python com uma calculadora simples, funções modulares, condicionais, tratamento de erros e simulador de terminal em tempo real.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
