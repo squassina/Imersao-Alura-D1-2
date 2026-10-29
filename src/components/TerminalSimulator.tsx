@@ -45,9 +45,10 @@ export const TerminalSimulator: React.FC = () => {
     { type: 'menu', text: '2. Subtração (-)' },
     { type: 'menu', text: '3. Multiplicação (*)' },
     { type: 'menu', text: '4. Divisão (/)' },
-    { type: 'menu', text: '5. Sair do programa' },
+    { type: 'menu', text: '5. Porcentagem (%)' },
+    { type: 'menu', text: '6. Sair do programa' },
     { type: 'banner', text: '================================' },
-    { type: 'prompt', text: 'Escolha uma opção (1-5):' },
+    { type: 'prompt', text: 'Escolha uma opção (1-6):' },
   ];
 
   // Initialize terminal on mount
@@ -87,21 +88,21 @@ export const TerminalSimulator: React.FC = () => {
         { type: 'input', text: `> ${input}` },
       ]);
 
-      if (input === '5') {
+      if (input === '6') {
         appendLines([
           { type: 'system', text: 'Obrigado por utilizar a calculadora. Bons estudos na programação! 👋' },
           { type: 'system', text: '[Processo encerrado com código 0]' },
         ]);
         setTerminalState('TERMINATED');
-        setSelectedOption('5');
+        setSelectedOption('6');
         setActiveFunction(null);
         return;
       }
 
-      if (!['1', '2', '3', '4'].includes(input)) {
+      if (!['1', '2', '3', '4', '5'].includes(input)) {
         setLastError('Opção inexistente no menu');
         appendLines([
-          { type: 'error', text: '[!] Opção inválida. Por favor, digite um número de 1 a 5.' },
+          { type: 'error', text: '[!] Opção inválida. Por favor, digite um número de 1 a 6.' },
           ...getMenuLines(),
         ]);
         return;
@@ -112,6 +113,7 @@ export const TerminalSimulator: React.FC = () => {
         '2': 'subtrair(a, b)',
         '3': 'multiplicar(a, b)',
         '4': 'dividir(a, b)',
+        '5': 'porcentagem(a, b)',
       };
 
       setSelectedOption(input);
@@ -192,6 +194,10 @@ export const TerminalSimulator: React.FC = () => {
           resultVal = (num1 ?? 0) / parsed;
           setLastError(null);
         }
+      } else if (selectedOption === '5') {
+        resultVal = ((num1 ?? 0) * parsed) / 100;
+        symbol = '%';
+        setLastError(null);
       }
 
       // Format clean numbers (e.g. 15 instead of 15.0 if integer, or keep standard)
@@ -200,6 +206,14 @@ export const TerminalSimulator: React.FC = () => {
       if (typeof resultVal === 'string') {
         appendLines([
           { type: 'error', text: `--> ${resultVal}` },
+          ...getMenuLines(),
+        ]);
+      } else if (selectedOption === '5') {
+        appendLines([
+          {
+            type: 'success',
+            text: `--> Resultado: ${parsed}% de ${num1} = ${resultVal}`,
+          },
           ...getMenuLines(),
         ]);
       } else {
@@ -355,10 +369,10 @@ export const TerminalSimulator: React.FC = () => {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder={
                   terminalState === 'WAITING_FOR_OPTION'
-                    ? 'Digite 1, 2, 3, 4 ou 5 e pressione Enter...'
+                    ? 'Digite 1, 2, 3, 4, 5 ou 6 e pressione Enter...'
                     : terminalState === 'WAITING_FOR_NUM1'
-                    ? 'Digite o primeiro número (ex: 25)...'
-                    : 'Digite o segundo número (ex: 5)...'
+                    ? 'Digite o primeiro número (ex: 200)...'
+                    : 'Digite o segundo número (ex: 15)...'
                 }
                 className="flex-1 bg-slate-900/90 text-slate-100 placeholder-slate-500 text-sm font-mono px-3 py-2 rounded-lg border border-slate-700 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all"
                 autoFocus
@@ -405,16 +419,22 @@ export const TerminalSimulator: React.FC = () => {
               Divisão por Zero (10 ÷ 0)
             </button>
             <button
+              onClick={() => runPreset(['5', '200', '15'])}
+              className="px-2 py-1 bg-sky-950/40 hover:bg-sky-900/50 text-sky-300 border border-sky-800/40 rounded text-xs transition-colors"
+            >
+              Porcentagem (15% de 200)
+            </button>
+            <button
               onClick={() => runPreset(['1', 'dez'])}
               className="px-2 py-1 bg-amber-950/40 hover:bg-amber-900/50 text-amber-300 border border-amber-800/40 rounded text-xs transition-colors"
             >
               Entrada com Texto ('dez')
             </button>
             <button
-              onClick={() => runPreset(['5'])}
+              onClick={() => runPreset(['6'])}
               className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded text-xs transition-colors ml-auto"
             >
-              Sair (Opção 5)
+              Sair (Opção 6)
             </button>
           </div>
         </div>

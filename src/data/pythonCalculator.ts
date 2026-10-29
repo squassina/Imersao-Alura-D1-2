@@ -29,6 +29,13 @@ def dividir(a, b):
         return "Erro: Não é possível dividir por zero!"
     return a / b
 
+def porcentagem(a, b):
+    """
+    Retorna a porcentagem 'b%' aplicada sobre o valor 'a'.
+    Exemplo: 15% de 200 = (200 * 15) / 100 = 30.0
+    """
+    return (a * b) / 100
+
 # ------------------------------------------------------------------------------
 # PARTE 2: FUNÇÃO PARA EXIBIR O MENU
 # Deixar o menu em uma função separada mantém o código organizado.
@@ -43,7 +50,8 @@ def exibir_menu():
     print("2. Subtração (-)")
     print("3. Multiplicação (*)")
     print("4. Divisão (/)")
-    print("5. Sair do programa")
+    print("5. Porcentagem (%)")
+    print("6. Sair do programa")
     print("=" * 32)
 
 # ------------------------------------------------------------------------------
@@ -56,19 +64,19 @@ def main():
     print("Bem-vindo(a) à sua primeira calculadora em Python!")
     
     # O laço 'while True' mantém o programa rodando continuamente
-    # até que o usuário escolha a opção de sair (opção 5).
+    # até que o usuário escolha a opção de sair (opção 6).
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção (1-5): ").strip()
+        opcao = input("Escolha uma opção (1-6): ").strip()
 
         # 1. Verificamos se o usuário quer encerrar o programa
-        if opcao == '5':
+        if opcao == '6':
             print("\\nObrigado por usar a calculadora. Bons estudos na programação! 👋")
             break  # O comando 'break' interrompe o laço while
 
-        # 2. Verificamos se a opção digitada é válida (1, 2, 3 ou 4)
-        if opcao not in ['1', '2', '3', '4']:
-            print("\\n[!] Opção inválida! Digite um número de 1 a 5.")
+        # 2. Verificamos se a opção digitada é válida (1 a 5)
+        if opcao not in ['1', '2', '3', '4', '5']:
+            print("\\n[!] Opção inválida! Digite um número de 1 a 6.")
             continue  # O comando 'continue' volta para o início do laço while
 
         # 3. Tratamento de exceção para a entrada dos números
@@ -93,11 +101,17 @@ def main():
         elif opcao == '4':
             resultado = dividir(num1, num2)
             simbolo = "/"
+        elif opcao == '5':
+            resultado = porcentagem(num1, num2)
+            simbolo = "%"
 
         # 5. Exibição formatada do resultado
         if isinstance(resultado, str):
             # Se for uma mensagem de erro (texto), exibimos direto
             print(f"\\n--> {resultado}")
+        elif opcao == '5':
+            # Exibição personalizada para porcentagem
+            print(f"\\n--> Resultado: {num2}% de {num1} = {resultado}")
         else:
             # Formatamos a saída com f-strings para ficar elegante e legível
             print(f"\\n--> Resultado: {num1} {simbolo} {num2} = {resultado}")
@@ -134,7 +148,7 @@ export const CODE_SECTIONS: CodeSection[] = [
     id: 'div-zero',
     title: 'Prevenção de Divisão por Zero',
     category: 'conditionals',
-    lines: [21, 27],
+    lines: [24, 31],
     summary: 'Validação preventiva com if b == 0 antes de realizar a divisão.',
     explanation: 'Em matemática e na computação, dividir qualquer número por 0 resulta em uma indeterminação. No Python, isso geraria um erro fatal chamado `ZeroDivisionError`. Ao checar `if b == 0:`, protegemos o programa com uma mensagem amigável.',
     codeSnippet: `def dividir(a, b):
@@ -142,6 +156,17 @@ export const CODE_SECTIONS: CodeSection[] = [
         return "Erro: Não é possível dividir por zero!"
     return a / b`,
     whyItMatters: 'Bons programadores sempre preveem casos extremos para que o aplicativo nunca feche sozinho na cara do usuário.'
+  },
+  {
+    id: 'percentage-op',
+    title: 'Operação de Porcentagem',
+    category: 'functions',
+    lines: [33, 39],
+    summary: 'Função porcentagem(a, b) calculando (a * b) / 100 de forma pura.',
+    explanation: 'Calcula b% de a. Por exemplo, para calcular 15% de 200, passamos a = 200 e b = 15, retornando (200 * 15) / 100 = 30.0.',
+    codeSnippet: `def porcentagem(a, b):
+    return (a * b) / 100`,
+    whyItMatters: 'Demonstra como criar novas funções matemáticas e integrá-las de forma limpa ao menu e ao fluxo condicional.'
   },
   {
     id: 'menu-function',

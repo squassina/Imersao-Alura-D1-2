@@ -3,8 +3,8 @@ import { Terminal, Download, Check, Copy } from 'lucide-react';
 import { PYTHON_SCRIPT_CODE } from '../data/pythonCalculator';
 
 interface HeaderProps {
-  activeTab: 'simulator' | 'guide' | 'setup' | 'challenges';
-  setActiveTab: (tab: 'simulator' | 'guide' | 'setup' | 'challenges') => void;
+  activeTab: 'simulator' | 'classic' | 'networks' | 'guide' | 'setup' | 'challenges';
+  setActiveTab: (tab: 'simulator' | 'classic' | 'networks' | 'guide' | 'setup' | 'challenges') => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
@@ -60,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
         </div>
 
         {/* Zone 2: Navigation links */}
-        <nav className="hidden md:flex items-center gap-2 text-sm font-medium">
+        <nav className="hidden md:flex items-center gap-1.5 text-sm font-medium">
           <button
             onClick={() => setActiveTab('simulator')}
             className={`px-3 py-1.5 rounded-md transition-colors whitespace-nowrap shrink-0 ${
@@ -69,7 +69,27 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
             }`}
           >
-            Simulador & Código
+            Simulador Python
+          </button>
+          <button
+            onClick={() => setActiveTab('classic')}
+            className={`px-3 py-1.5 rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              activeTab === 'classic'
+                ? 'bg-sky-500/15 text-sky-400 font-semibold border border-sky-500/30'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+            }`}
+          >
+            Calculadora Clássica
+          </button>
+          <button
+            onClick={() => setActiveTab('networks')}
+            className={`px-3 py-1.5 rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              activeTab === 'networks'
+                ? 'bg-sky-500/15 text-sky-400 font-semibold border border-sky-500/30'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+            }`}
+          >
+            Cálculos de Redes
           </button>
           <button
             onClick={() => setActiveTab('guide')}
@@ -99,7 +119,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
             }`}
           >
-            Desafios Práticos
+            Desafios
           </button>
         </nav>
 
@@ -143,7 +163,23 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             activeTab === 'simulator' ? 'bg-sky-500/20 text-sky-300 font-semibold' : 'text-slate-400'
           }`}
         >
-          Simulador & Código
+          Simulador Python
+        </button>
+        <button
+          onClick={() => setActiveTab('classic')}
+          className={`px-3 py-1 rounded whitespace-nowrap ${
+            activeTab === 'classic' ? 'bg-sky-500/20 text-sky-300 font-semibold' : 'text-slate-400'
+          }`}
+        >
+          Calculadora Clássica
+        </button>
+        <button
+          onClick={() => setActiveTab('networks')}
+          className={`px-3 py-1 rounded whitespace-nowrap ${
+            activeTab === 'networks' ? 'bg-sky-500/20 text-sky-300 font-semibold' : 'text-slate-400'
+          }`}
+        >
+          Cálculos de Redes
         </button>
         <button
           onClick={() => setActiveTab('guide')}

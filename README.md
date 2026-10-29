@@ -34,17 +34,19 @@ def dividir(a, b):
     if b == 0:
         return "Erro: Não é possível dividir por zero!"
     return a / b
+def porcentagem(a, b):
+    return (a * b) / 100
 
 # 2. Menu de opções
 def exibir_menu():
-    print("\n1. Adição | 2. Subtração | 3. Multiplicação | 4. Divisão | 5. Sair")
+    print("\n1. Adição | 2. Subtração | 3. Multiplicação | 4. Divisão | 5. Porcentagem | 6. Sair")
 
 # 3. Fluxo com loop e tratamento de erros
 def main():
     while True:
         exibir_menu()
-        opcao = input("Escolha uma opção (1-5): ").strip()
-        if opcao == '5':
+        opcao = input("Escolha uma opção (1-6): ").strip()
+        if opcao == '6':
             break
         ...
 ```
@@ -81,6 +83,9 @@ elif opcao == '3':
 elif opcao == '4':
     resultado = dividir(num1, num2)
     simbolo = "/"
+elif opcao == '5':
+    resultado = porcentagem(num1, num2)
+    simbolo = "%"
 ```
 
 - `if` ("se"): Testa a primeira condição.
@@ -93,11 +98,11 @@ Para que o usuário possa fazer várias contas sem precisar reabrir o programa a
 ```python
 while True:
     exibir_menu()
-    opcao = input("Escolha (1-5): ")
-    if opcao == '5':
+    opcao = input("Escolha (1-6): ")
+    if opcao == '6':
         print("Até logo!")
         break      # Sai do laço e encerra
-    if opcao not in ['1', '2', '3', '4']:
+    if opcao not in ['1', '2', '3', '4', '5']:
         print("Opção inválida!")
         continue   # Volta para o início do laço
 ```
@@ -173,11 +178,17 @@ python3 calculadora.py
 
 ## 🌐 Recursos da Aplicação Web Interativa
 
-Esta aplicação conta com um laboratório interativo no navegador:
-1. **Simulador de Terminal:** Teste a calculadora diretamente na interface, digitando entradas e vendo saídas idênticas ao terminal de verdade.
-2. **Inspetor de Variáveis:** Visualize em tempo real os valores de `opcao`, `num1`, `num2`, `resultado` e a função ativa em memória.
-3. **Explorador Interativo de Código:** Clique nas seções do script para ler anotações didáticas de cada linha.
-4. **Cópia e Download Instantâneos:** Baixe o arquivo `.py` com 1 clique para usar nos seus estudos.
+Esta aplicação conta com um laboratório completo no navegador com múltiplas interfaces:
+1. **1ª Interface: Simulador de Terminal Python:** Teste o script interativamente, inserindo valores no prompt com feedback visual de memória e variáveis.
+2. **2ª Interface: Calculadora Clássica com Botões:** Teclado numérico físico digital clássico (0-9, +, -, *, /, %, ±, C, AC, Backspace), visor LCD, histórico de operações e suporte completo a atalhos de teclado.
+3. **Módulo de Redes de Computadores:** Ferramentas dedicadas para cálculos de infraestrutura:
+   - **Sub-rede IPv4 / CIDR:** Cálculo de máscara decimal, máscara binária, endereço de rede, primeiro/último host útil, broadcast e total de hosts.
+   - **Tempo Estimado de Download:** Cálculo de transferência com conversão de bits para Bytes (Mbps ➔ MB/s).
+   - **Conversor Decimal ➔ Binário:** Conversão detalhada dos 4 octetos em 8 bits cada.
+   - **Latência Nodal:** Cálculo de atraso de transmissão ($L/R$) e atraso de propagação ($d/s$).
+4. **Módulo Python `redes.py`:** Todas as funções de redes também estão disponíveis em Python puro no arquivo [`redes.py`](./redes.py) e integradas no menu do [`calculadora.py`](./calculadora.py).
+5. **Explorador Interativo de Código:** Clique nas seções do script para ler anotações didáticas de cada linha.
+6. **Cópia e Download Instantâneos:** Baixe os arquivos `.py` com 1 clique para usar nos seus estudos.
 
 ---
 

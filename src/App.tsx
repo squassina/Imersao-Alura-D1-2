@@ -5,10 +5,12 @@ import { CodeViewer } from './components/CodeViewer';
 import { DidacticGuide } from './components/DidacticGuide';
 import { LocalSetupGuide } from './components/LocalSetupGuide';
 import { ChallengesTab } from './components/ChallengesTab';
-import { Terminal, Code2, BookOpen, Laptop, Sparkles } from 'lucide-react';
+import { ClassicCalculator } from './components/ClassicCalculator';
+import { NetworkCalculator } from './components/NetworkCalculator';
+import { Terminal, Code2, BookOpen, Laptop, Sparkles, Calculator, Network } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'simulator' | 'guide' | 'setup' | 'challenges'>('simulator');
+  const [activeTab, setActiveTab] = useState<'simulator' | 'classic' | 'networks' | 'guide' | 'setup' | 'challenges'>('simulator');
   const [subView, setSubView] = useState<'both' | 'terminal' | 'code'>('both');
 
   return (
@@ -114,7 +116,39 @@ export default function App() {
           </div>
         )}
 
-        {/* Tab 2: Didactic Guide */}
+        {/* Tab: Classic Calculator (2nd Interface) */}
+        {activeTab === 'classic' && (
+          <div className="space-y-4">
+            <div className="pb-2 border-b border-slate-800/80">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                <Calculator className="w-6 h-6 text-sky-400" />
+                <span>2ª Interface: Calculadora Clássica com Botões</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                Teclado numérico físico digital, visor LCD, atalhos de teclado (0-9, +, -, *, /, Enter, Esc) e histórico de cálculos.
+              </p>
+            </div>
+            <ClassicCalculator />
+          </div>
+        )}
+
+        {/* Tab: Computer Networks Calculator */}
+        {activeTab === 'networks' && (
+          <div className="space-y-4">
+            <div className="pb-2 border-b border-slate-800/80">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                <Network className="w-6 h-6 text-sky-400" />
+                <span>Calculadora de Redes de Computadores</span>
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                Cálculos de sub-redes IPv4 / CIDR, tempo estimado de download, conversor de octetos binários e latência nodal (L/R e d/s).
+              </p>
+            </div>
+            <NetworkCalculator />
+          </div>
+        )}
+
+        {/* Tab: Didactic Guide */}
         {activeTab === 'guide' && (
           <div className="space-y-4">
             <div className="pb-2 border-b border-slate-800/80">
@@ -172,24 +206,31 @@ export default function App() {
           </p>
           <div className="flex items-center gap-4 text-slate-400">
             <button
+              onClick={() => setActiveTab('classic')}
+              className="hover:text-sky-400 transition-colors"
+            >
+              Calculadora Clássica
+            </button>
+            <span>·</span>
+            <button
+              onClick={() => setActiveTab('networks')}
+              className="hover:text-sky-400 transition-colors"
+            >
+              Redes
+            </button>
+            <span>·</span>
+            <button
               onClick={() => setActiveTab('guide')}
               className="hover:text-sky-400 transition-colors"
             >
-              Guia de Conceitos
+              Guia
             </button>
             <span>·</span>
             <button
               onClick={() => setActiveTab('setup')}
               className="hover:text-sky-400 transition-colors"
             >
-              Instalação Local
-            </button>
-            <span>·</span>
-            <button
-              onClick={() => setActiveTab('challenges')}
-              className="hover:text-sky-400 transition-colors"
-            >
-              Desafios
+              Instalação
             </button>
           </div>
         </div>

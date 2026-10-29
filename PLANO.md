@@ -55,28 +55,30 @@ Plataforma didática e simulador interativo projetado para quem está começando
 
 ---
 
-### 4. Arquitetura Técnica e Código Base
+### 4. Arquitetura Técnica e Interfaces Entregues
 
 ```
-┌────────────────────────────────────────────────────────────────────────┐
-│                        Top Bar & Global Actions                        │
-│   Calculadora Python 3 · Guia Interativo [Copiar Código] [Baixar .py]   │
-└────────────────────────────────────┬───────────────────────────────────┘
-                                     │
-           ┌─────────────────────────┴─────────────────────────┐
-           ▼                                                   ▼
-┌─────────────────────────────────────┐ ┌─────────────────────────────────────┐
-│       Visualizador de Código        │ │     Console / Terminal Python       │
-│  - Destaque de sintaxe              │ │  - Prompt de entrada interativo     │
-│  - Linhas clicáveis com tooltips    │ │  - Menu do loop interativo          │
-│  - Marcadores de componentes chave  │ │  - Logs de execução formatados      │
-│  - Explicações conceituais          │ │  - Inspetor de variáveis ao vivo    │
-└─────────────────────────────────────┘ └─────────────────────────────────────┘
-                                     │
-                                     ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                      Módulos Didáticos & Prática                       │
-│  [1. Funções]  [2. Condicionais]  [3. Laços de Repetição]  [4. Erros] │
-│  Exemplos práticos, analogias didáticas e desafios para o aluno        │
-└────────────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                               Top Bar & Navegação Global                               │
+│  [Simulador Python] [Calculadora Clássica] [Cálculos de Redes] [Guia] [Como Rodar]     │
+└──────────────────────────────────────────┬─────────────────────────────────────────────┘
+                                           │
+         ┌─────────────────────────────────┼─────────────────────────────────┐
+         ▼                                 ▼                                 ▼
+┌───────────────────────────────┐ ┌───────────────────────────────┐ ┌───────────────────────────────┐
+│  1. Simulador & Código Python │ │  2. Calculadora Clássica LCD  │ │  3. Suíte de Redes (IPv4/CIDR)│
+│  - Terminal virtual em tempo  │ │  - Teclado numérico digital   │ │  - Sub-redes, Hosts e Máscara │
+│    real e prompt interativo   │ │  - Visor LCD e histórico      │ │  - Tempo de Download (MB/s)   │
+│  - 4 operações + porcentagem  │ │  - Suporte a teclado físico   │ │  - Conversor IP em binário    │
+│  - Inspetor de variáveis      │ │  - Atalhos bits ↔ Bytes       │ │  - Latência Nodal (L/R e d/s) │
+└───────────────────────────────┘ └───────────────────────────────┘ └───────────────────────────────┘
+                                           │
+                                           ▼
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        Módulos Python & Documentação Local                             │
+│  - calculadora.py (script principal com operações e submenu de redes)                  │
+│  - redes.py (módulo de funções de redes: sub-rede, download, binário e latência)       │
+│  - README.md (manual completo para iniciantes e comandos de execução)                  │
+│  - PLANO.md (arquitetura e decisões técnicas)                                          │
+└────────────────────────────────────────────────────────────────────────────────────────┘
 ```
