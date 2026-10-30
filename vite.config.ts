@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/Imersao-Alura-D1-2/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
